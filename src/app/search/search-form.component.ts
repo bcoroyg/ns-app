@@ -3,8 +3,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 @Component({
   selector: 'SearchForm',
   template: `
-    <TextField #texto="ngModel" [(ngModel)]="textFieldValue"  hint="Ingresar Texto ..." required></TextField>
+    <TextField #texto="ngModel" [(ngModel)]="textFieldValue"  hint="Ingresar Texto ..." required minlen="4"></TextField>
     <Label *ngIf="texto.hasError('required')" text="El campo es obligatorio" class="text-center text-danger"></Label>
+    <Label *ngIf="!texto.hasError('required') && texto.hasError('minlen')" text="Ingresar minimo 4 letras." class="text-center text-danger"></Label>
     <Button *ngIf="texto.valid" text="Buscar" (tap)="onButtonTap()"></Button>
   `
   /* template: `

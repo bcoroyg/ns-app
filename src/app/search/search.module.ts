@@ -5,10 +5,11 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { NewsService } from '../domain/news.service';
 import { SearchFormComponent } from './search-form.component';
+import { MinLenDirective } from "./min-len.validator";
 
 @NgModule({
   imports: [NativeScriptCommonModule, SearchRoutingModule, NativeScriptFormsModule],
-  declarations: [SearchComponent, SearchFormComponent],
+  declarations: [SearchComponent, SearchFormComponent, MinLenDirective],
   //providers:[NewsService],
   schemas: [NO_ERRORS_SCHEMA],
 })

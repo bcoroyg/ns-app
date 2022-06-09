@@ -9,9 +9,10 @@ import { NewsService } from '../domain/news.service';
   //providers:[NewsService],
 })
 export class SearchComponent implements OnInit {
+  results: Array<string>=[];
   constructor(public news: NewsService) {
     // Use the component constructor to inject providers.
-  }
+  };
 
   ngOnInit(): void {
     // Init your component properties here.
@@ -27,5 +28,14 @@ export class SearchComponent implements OnInit {
 
   onItemTap(args:any){
     console.dir(args)
-  }
-}
+  };
+
+  onPull(e:any) {
+    console.log(e);
+    const pullRefresh = e.object;
+    setTimeout(() => {
+      this.results.push("xxxxxxx");
+      pullRefresh.refreshing = false;
+    }, 2000);
+  };
+};

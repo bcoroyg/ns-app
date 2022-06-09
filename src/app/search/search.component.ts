@@ -18,10 +18,14 @@ export class SearchComponent implements OnInit {
     this.news.add("Data 1");
     this.news.add("Data 2");
     this.news.add("Data 3");
-  }
+  };
 
   onDrawerButtonTap(): void {
     const sideDrawer = <RadSideDrawer>Application.getRootView()
     sideDrawer.showDrawer()
+  };
+
+  onItemTap(args:any){
+    console.dir(args)
   }
 }

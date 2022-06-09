@@ -1,15 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { SearchBar } from '@nativescript/core';
 
 @Component({
   selector: 'SearchForm',
-  template: `
+  /* template: `
     <TextField [(ngModel)]="textFieldValue"  hint="Ingresar Texto ..."></TextField>
     <Button text="Buscar" (tap)="onButtonTap()"></Button>
-  `
-/*   template: `
-  <SearchBar hint="Ingresar Texto ..." [text]="textFieldValue" (submit)="onButtonTap($event)"></SearchBar>
   ` */
+  template: `
+  <SearchBar hint="Ingresar Texto ..." [(ngModel)]="textFieldValue" (submit)="onButtonTap()"></SearchBar>
+  `
 })
 export class SearchFormComponent implements OnInit{
   textFieldValue: string="";
@@ -27,10 +26,5 @@ export class SearchFormComponent implements OnInit{
     if (this.textFieldValue.length > 2) {
       this.search.emit(this.textFieldValue);
     }
-/*     const searchBar = args.object as SearchBar;
-    console.log(`Buscando ${searchBar.text}`);
-     if (searchBar.text.length > 2) {
-      this.search.emit(searchBar.text);
-    } */
   }
 }

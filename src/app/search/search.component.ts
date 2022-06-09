@@ -38,4 +38,8 @@ export class SearchComponent implements OnInit {
       pullRefresh.refreshing = false;
     }, 2000);
   };
+
+  searchNow(s: string){
+    this.results = this.news.search().filter((x)=> x.indexOf(s) >= 0);
+  };
 };

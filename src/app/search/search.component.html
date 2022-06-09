@@ -9,9 +9,10 @@
 
 <StackLayout class="page__content">
   <Label class="page__content-icon fas" text="&#xf002;"></Label>
+  <SearchForm (search)="searchNow($event)" [inicial]="'Data'"></SearchForm>
   <ListView
     class="list-group"
-    [items]="this.news.search()"
+    [items]="this.results"
     (itemTap)="onItemTap($event)"
     style="height: 1250px;"
   >
@@ -31,7 +32,7 @@
 </StackLayout>
 
 
-<PullToRefresh (refresh)="onPull($event)">
+<!-- <PullToRefresh (refresh)="onPull($event)">
   <ListView
     class="list-group"
     [items]="this.results"
@@ -55,5 +56,5 @@
       </FlexboxLayout>
     </ng-template>
   </ListView>
-</PullToRefresh>
+</PullToRefresh> -->
 

@@ -2,13 +2,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'SearchForm',
-  /* template: `
-    <TextField [(ngModel)]="textFieldValue"  hint="Ingresar Texto ..."></TextField>
-    <Button text="Buscar" (tap)="onButtonTap()"></Button>
-  ` */
   template: `
-  <SearchBar hint="Ingresar Texto ..." [(ngModel)]="textFieldValue" (submit)="onButtonTap()"></SearchBar>
+    <TextField #texto="ngModel" [(ngModel)]="textFieldValue"  hint="Ingresar Texto ..." required></TextField>
+    <Label *ngIf="texto.hasError('required')" text="El campo es obligatorio" class="text-center text-danger"></Label>
+    <Button *ngIf="texto.valid" text="Buscar" (tap)="onButtonTap()"></Button>
   `
+  /* template: `
+  <SearchBar #texto="ngModel" hint="Ingresar Texto ..." [(ngModel)]="textFieldValue" (submit)="onButtonTap()" required></SearchBar>
+  <Label *ngIf="texto.hasError('required')" text="El campo es obligatorio" class="text-center text-danger"></Label>
+  ` */
 })
 export class SearchFormComponent implements OnInit{
   textFieldValue: string="";

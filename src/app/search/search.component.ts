@@ -3,6 +3,9 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application, Color, View } from '@nativescript/core'
 import { NewsService } from '../domain/news.service';
 import { ToastDuration, Toasty } from '@triniwiz/nativescript-toasty';
+import * as newsActions from '../store/news/news.action'
+import { Store } from '@ngrx/store';
+import { AppState } from '../store';
 
 @Component({
   selector: 'Search',
@@ -12,8 +15,19 @@ import { ToastDuration, Toasty } from '@triniwiz/nativescript-toasty';
 export class SearchComponent implements OnInit {
   results: Array<string>=[];
   @ViewChild("layout") layout: ElementRef;
-  constructor(public news: NewsService) {
+  constructor(public news: NewsService, private store: Store<AppState>) {
     // Use the component constructor to inject providers.
+    this.store.select((state) => state.news.suggested)
+      .subscribe((data) => {
+        const f = data;
+        if (f != null) {
+          const toasty = new Toasty({
+            text: 'Sugerimos leer: ' + f.title,
+            duration: ToastDuration.SHORT
+          });
+          toasty.show();
+        }
+      });
   };
 
   ngOnInit(): void {
@@ -26,7 +40,8 @@ export class SearchComponent implements OnInit {
   };
 
   onItemTap(args:any){
-    console.dir(args)
+    this.store.dispatch(newsActions.NuevaNoticiaAction({news:args.view.bindingContext}))
+    console.dir("ON ITEM",args.view.bindingContext)
   };
 
   onPull(e:any) {

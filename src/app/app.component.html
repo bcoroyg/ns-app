@@ -64,6 +64,18 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
           <Label col="0" text="&#xf013;" class="nt-icon fas"></Label>
           <Label col="1" text="Settings" class="p-r-10"></Label>
         </GridLayout>
+
+        <StackLayout class="hr"></StackLayout>
+
+        <GridLayout
+          columns="auto, *"
+          class="nt-drawer__list-item"
+          [class.-selected]="isComponentSelected('/emails')"
+          (tap)="onNavItemTap('/emails')"
+        >
+          <Label col="0" text="&#xf013;" class="nt-icon fas"></Label>
+          <Label col="1" text="Emails" class="p-r-10"></Label>
+        </GridLayout>
       </StackLayout>
     </ScrollView>
   </GridLayout>

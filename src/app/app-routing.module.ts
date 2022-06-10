@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('~/app/settings/settings.module').then((m) => m.SettingsModule),
   },
+  {
+    path: 'emails',
+    loadChildren: () => import('~/app/email/email.module').then((m) => m.EmailModule),
+  },
 ]
 
 @NgModule({

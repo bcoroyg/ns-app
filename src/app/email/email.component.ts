@@ -3,6 +3,7 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application } from '@nativescript/core'
 import { compose } from '@nativescript/email'
 import { knownFolders } from "@nativescript/core";
+import { device, Screen as screen } from '@nativescript/core/platform'
 
 @Component({
   selector: 'Email',
@@ -49,4 +50,23 @@ export class EmailComponent implements OnInit {
         }]
     }).then(() => console.log("Enviador de mail cerrado"), (err) => console.log("Error: " + err));
   };
+
+  onDatosPlataforma(): void {
+    console.log("modelo", device.model);
+    console.log("tipo dispositivo", device.deviceType);
+    console.log("Sistema operativo", device.os);
+    console.log("versión sist operativo", device.osVersion);
+    console.log("Versión sdk", device.sdkVersion);
+    console.log("lenguaje", device.language);
+    console.log("fabricante", device.manufacturer);
+    console.log("código único de dispositivo", device.uuid);
+    console.log("altura en pixels normalizados", screen.mainScreen.heightDIPs); /* DIP
+    (Device Independent Pixel), también conocido como densidad de píxeles independientes.Un
+    píxel virtual que aparece aproximadamente del mismo tamaño en una variedad de
+    densidades de pantalla.*/
+    console.log("altura pixels", screen.mainScreen.heightPixels);
+    console.log("escala pantalla", screen.mainScreen.scale);
+    console.log("ancho pixels normalizados", screen.mainScreen.widthDIPs);
+    console.log("ancho pixels", screen.mainScreen.widthPixels);
+  }
 }

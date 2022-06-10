@@ -48,5 +48,5 @@ export class HomeComponent implements OnInit {
         console.log("Permiso de camara no aceptado por el usuario");
       }
     );
-  }
+  };
 }

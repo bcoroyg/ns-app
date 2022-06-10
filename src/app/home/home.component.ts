@@ -3,6 +3,7 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application } from '@nativescript/core'
 import { requestPermissions, takePicture } from '@nativescript/camera'
 import { ImageSource as imageSourceModule } from '@nativescript/core';
+
 import * as SocialShare from '@nativescript/social-share';
 
 @Component({
@@ -10,6 +11,7 @@ import * as SocialShare from '@nativescript/social-share';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+
   constructor() {
     // Use the component constructor to inject providers.
   }

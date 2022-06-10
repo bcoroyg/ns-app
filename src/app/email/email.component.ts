@@ -4,6 +4,8 @@ import { Application } from '@nativescript/core'
 import { compose } from '@nativescript/email'
 import { knownFolders } from "@nativescript/core";
 import { device, Screen as screen } from '@nativescript/core/platform'
+import { connectionType, getConnectionType, startMonitoring, stopMonitoring } from "@nativescript/core/connectivity";
+
 
 @Component({
   selector: 'Email',
@@ -11,7 +13,7 @@ import { device, Screen as screen } from '@nativescript/core/platform'
 })
 
 export class EmailComponent implements OnInit {
-
+  monitoreando: boolean = false; // una variable para saber si estás monitoreando o no.
   constructor() {
     // Use the component constructor to inject providers.
   }
@@ -68,5 +70,54 @@ export class EmailComponent implements OnInit {
     console.log("escala pantalla", screen.mainScreen.scale);
     console.log("ancho pixels normalizados", screen.mainScreen.widthDIPs);
     console.log("ancho pixels", screen.mainScreen.widthPixels);
+  };
+
+  onMonitoreoDatos(): void {
+    const myConnectionType = getConnectionType();
+    switch (myConnectionType) {
+      case connectionType.none:
+        console.log("Sin Conexion");
+        break;
+      case connectionType.wifi:
+        console.log("WiFi");
+        break;
+      case connectionType.mobile:
+        console.log("Mobile");
+        break;
+      case connectionType.ethernet:
+        console.log("Ethernet"); // es decir, cableada
+        break;
+      case connectionType.bluetooth:
+        console.log("Bluetooth");
+        break;
+      default:
+        break;
+    }
+    this.monitoreando = !this.monitoreando;
+    if (this.monitoreando) {
+      startMonitoring((newConnectionType) => {
+        switch (newConnectionType) {
+          case connectionType.none:
+            console.log("Cambió a sin conexión.");
+            break;
+          case connectionType.wifi:
+            console.log("Cambió a WiFi.");
+            break;
+          case connectionType.mobile:
+            console.log("Cambió a mobile.");
+            break;
+          case connectionType.ethernet:
+            console.log("Cambió a ethernet.");
+            break;
+          case connectionType.bluetooth:
+            console.log("Cambió a bluetooth.");
+            break;
+          default:
+            break;
+        }
+      });
+    } else {
+      stopMonitoring();
+    }
   }
 }

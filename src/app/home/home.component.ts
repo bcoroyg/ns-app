@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit {
           saveToGallery:true,
         }).
           then((imageAsset) => {
+            imageSourceModule.fromAsset(imageAsset).
+            then((imageSource)=>{
+              SocialShare.shareImage(imageSource, "Asunto: compartido desde el curso!");
+            });
             console.log("Tamaño: " + imageAsset.options.width + "x" + imageAsset.options.height);
             console.log("keepAspectRatio: " + imageAsset.options.keepAspectRatio);
             console.log("Foto guardada!");

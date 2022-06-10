@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application } from '@nativescript/core'
+import { requestPermissions, takePicture } from '@nativescript/camera'
+import { ImageSource as imageSourceModule } from '@nativescript/core';
+import * as SocialShare from '@nativescript/social-share';
 
 @Component({
   selector: 'Home',
@@ -18,5 +21,28 @@ export class HomeComponent implements OnInit {
   onDrawerButtonTap(): void {
     const sideDrawer = <RadSideDrawer>Application.getRootView()
     sideDrawer.showDrawer()
+  }
+
+  onTap(): void {
+    requestPermissions().then(
+      function success() {
+        takePicture({
+          width: 300,
+          height: 300,
+          keepAspectRatio: false,
+          saveToGallery:true,
+        }).
+          then((imageAsset) => {
+            console.log("Tamaño: " + imageAsset.options.width + "x" + imageAsset.options.height);
+            console.log("keepAspectRatio: " + imageAsset.options.keepAspectRatio);
+            console.log("Foto guardada!");
+          }).catch((err) => {
+            console.log("Error -> " + err.message);
+          });
+      },
+      function failure() {
+        console.log("Permiso de camara no aceptado por el usuario");
+      }
+    );
   }
 }

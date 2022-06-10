@@ -14,6 +14,7 @@
     "@angular/router": "~13.2.0",
     "@nativescript-community/ui-pulltorefresh": "^2.5.1",
     "@nativescript/angular": "^13.0.0",
+    "@nativescript/camera": "^5.0.12",
     "@nativescript/core": "~8.2.0",
     "@nativescript/email": "^2.0.5",
     "@nativescript/social-share": "^2.0.4",

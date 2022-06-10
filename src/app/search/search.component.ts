@@ -6,7 +6,7 @@ import { ToastDuration, Toasty } from '@triniwiz/nativescript-toasty';
 import * as newsActions from '../store/news/news.action'
 import { Store } from '@ngrx/store';
 import { AppState } from '../store';
-
+import * as SocialShare from "@nativescript/social-share";
 @Component({
   selector: 'Search',
   templateUrl: './search.component.html',
@@ -43,6 +43,11 @@ export class SearchComponent implements OnInit {
     this.store.dispatch(newsActions.NuevaNoticiaAction({news:args.view.bindingContext}))
     console.dir("ON ITEM",args.view.bindingContext)
   };
+
+  onLongPress(s: string): void {
+    console.log(s);
+    SocialShare.shareText(s, "Asunto: compartido desde el curso!");
+  }
 
   onPull(e:any) {
     console.log(e);

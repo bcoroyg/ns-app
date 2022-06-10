@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 import { Application, Color, View } from '@nativescript/core'
 import { NewsService } from '../domain/news.service';
+import { ToastDuration, Toasty } from '@triniwiz/nativescript-toasty';
 
 @Component({
   selector: 'Search',
@@ -17,9 +18,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     // Init your component properties here.
-    this.news.add("Data 1");
-    this.news.add("Data 2");
-    this.news.add("Data 3");
   };
 
   onDrawerButtonTap(): void {
@@ -41,8 +39,18 @@ export class SearchComponent implements OnInit {
   };
 
   searchNow(s: string){
-    this.results = this.news.search().filter((x)=> x.indexOf(s) >= 0);
-    const layout = <View>this.layout.nativeElement;
+    //this.results = this.news.search().filter((x)=> x.indexOf(s) >= 0);
+    this.news.search(s).then((result: any) => {
+      console.log('resultados buscarAhora: ' + JSON.stringify(result));
+      this.results = result
+    }, (e) => {
+      const toasty = new Toasty({
+        text: 'Error en la busqueda...',
+        duration: ToastDuration.SHORT
+      });
+      toasty.show();
+    });
+    /* const layout = <View>this.layout.nativeElement;
     layout.animate({
       backgroundColor: new Color('blue'),
       duration: 3000,
@@ -51,6 +59,6 @@ export class SearchComponent implements OnInit {
       backgroundColor: new Color('white'),
       duration: 3000,
       delay: 1500,
-    }));
+    })); */
   };
 };

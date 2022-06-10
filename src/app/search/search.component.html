@@ -16,7 +16,7 @@
     (itemTap)="onItemTap($event)"
     style="height: 1250px;"
   >
-    <ng-template let-x="item">
+    <ng-template let-x="item.title">
       <FlexboxLayout flexDirection="row" class="list-group-item">
         <Image src="res://icon" class="thumb img-circle"></Image>
         <Label

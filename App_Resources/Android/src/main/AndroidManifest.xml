@@ -21,6 +21,10 @@
 		android:theme="@style/AppTheme"
 		android:hardwareAccelerated="true">
 
+		<meta-data
+				android:name="com.google.android.geo.API_KEY"
+				android:value="YOUR_API"/>
+
 		<activity
 			android:name="com.tns.NativeScriptActivity"
 			android:label="@string/title_activity_kimera"
@@ -30,7 +34,9 @@
       		android:launchMode="singleTask"
 			android:exported="true">
 
-			<meta-data android:name="SET_THEME_ON_LAUNCH" android:resource="@style/AppTheme" />
+			<meta-data
+				android:name="SET_THEME_ON_LAUNCH"
+				android:resource="@style/AppTheme" />
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

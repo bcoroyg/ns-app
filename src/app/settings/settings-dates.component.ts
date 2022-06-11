@@ -3,8 +3,7 @@ import { ApplicationSettings} from '@nativescript/core'
 
 @Component({
     selector: 'SettingsDates',
-    template: `
-    `
+    template: ``
 })
 export class SettingsDatesComponent {
   operations(){
@@ -24,10 +23,4 @@ export class SettingsDatesComponent {
     /* BORRAR TODOS LOS VALORES */
     ApplicationSettings.clear();
   };
-
-
-
-  getAll(){
-
-  }
 }
